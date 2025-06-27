@@ -1,0 +1,51 @@
+INSERT INTO sales (product_name, category, quantity, price) VALUES
+    ('Wireless Mouse', 'Electronics', 5, 25),
+    ('Keyboard', 'Electronics', 3, 45),
+    ('Notebook', 'Stationery', 10, 3),
+    ('Pen Set', 'Stationery', 8, 12),
+    ('Headphones', 'Electronics', 2, 90),
+    ('Stapler', 'Office', 4, 9),
+    ('Monitor', 'Electronics', 1, 200),
+    ('Paper Pack', 'Stationery', 6, 16),
+    ('Desk Lamp', 'Office', 3, 30),
+    ('USB Cable', 'Electronics', 7, 10),
+    ('Highlighter', 'Stationery', 12, 2),
+    ('Mouse Pad', 'Office', 5, 7);
+
+-- Query 1: Total sales by category (SUM with GROUP BY)
+SELECT 
+    category,
+    SUM(quantity * price) AS total_sales
+FROM 
+    sales
+GROUP BY 
+    category;
+
+-- Query 2: Average price by category (AVG with GROUP BY)
+SELECT 
+    category,
+    AVG(price) AS avg_price
+FROM 
+    sales
+GROUP BY 
+    category;
+
+-- Query 3: Number of products sold per category (COUNT with GROUP BY)
+SELECT 
+    category,
+    COUNT(*) AS product_count
+FROM 
+    sales
+GROUP BY 
+    category;
+
+-- Query 4: Categories with total sales > 100 (HAVING filter)
+SELECT 
+    category,
+    SUM(quantity * price) AS total_sales
+FROM 
+    sales
+GROUP BY 
+    category
+HAVING 
+    SUM(quantity * price) > 100;
